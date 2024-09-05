@@ -77,7 +77,7 @@ int main() {
   motor_4.period(1.0 / 500.0);
   // Actuate motor with 50% mg total thrust force ( N ) and zero torques ( N . m
   // )
-  actuate(0.5 * m * g, 0, 0, 0);
+  actuate(0.15, 0, 0, -0.001);
   wait(5);
   // Turn off all motors
   actuate(0, 0, 0, 0);

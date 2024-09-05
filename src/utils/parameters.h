@@ -19,6 +19,6 @@ const float a1 = 7.081e-12;
 
 const float kl = 1.468e-8;
 
-const float kd = 1.267e-11;
+const float kd = 1.267e-10;
 
 #endif
