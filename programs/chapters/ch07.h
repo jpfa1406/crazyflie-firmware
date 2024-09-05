@@ -1,6 +1,6 @@
 
 #include "crazyflie.h"
-#include "mbed.h "
+#include "mbed.h"
 
 // Define all motors as PWM objects
 PwmOut motor_1(MOTOR1);
@@ -15,11 +15,49 @@ float omega_3;
 float omega_4;
 
 // Converts desired angular velocity ( rad / s ) to PWM signal (%)
-float control_motor(float omega) { (...) }
+float control_motor(float omega){
+    float PWM = a2*omega*omega + a1*omega; 
+    return PWM;
+}
 
 // Converts total trust force ( N ) and torques ( N . m ) to angular velocities
 // ( rad / s )
-void mixer(float f_t, float tau_phi, float tau_theta, float tau_psi) { (...) }
+void mixer(float f_t, float tau_phi, float tau_theta, float tau_psi) { //omega_1
+    omega_1 = (1/(4*kl))*f_t - (1/(4*kl*l))*tau_phi - (1/(4*kl*l))*tau_theta - (1/(4*kd))*tau_psi;
+    if (omega_1 < 0){
+        omega_1 = 0.0;
+    }
+    else {
+        omega_1 = sqrt(omega_1);
+    }
+
+    //omega_2
+    omega_2 = (1/(4*kl))*f_t - (1/(4*kl*l))*tau_phi + (1/(4*kl*l))*tau_theta + (1/(4*kd))*tau_psi;
+    if (omega_2 < 0){
+        omega_2 = 0.0;
+    }
+    else {
+        omega_2 = sqrt(omega_2);
+    }
+
+    //omega_3
+    omega_3 = (1/(4*kl))*f_t + (1/(4*kl*l))*tau_phi + (1/(4*kl*l))*tau_theta - (1/(4*kd))*tau_psi;
+    if (omega_3 < 0){
+        omega_3 = 0.0;
+    }
+    else {
+        omega_3 = sqrt(omega_3);
+    }
+
+    //omega_4
+    omega_4 = (1/(4*kl))*f_t + (1/(4*kl*l))*tau_phi - (1/(4*kl*l))*tau_theta + (1/(4*kd))*tau_psi;
+    if (omega_4 < 0){
+        omega_4 = 0.0;
+    }
+    else {
+        omega_4= sqrt(omega_4);
+    }
+}
 
 // Actuate motors with desired total trust force ( N ) and torques ( N . m )
 void actuate(float f_t, float tau_phi, float tau_theta, float tau_psi) {
