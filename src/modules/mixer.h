@@ -12,9 +12,11 @@ class Mixer
         Mixer () ;
         // Actuate motors with desired total trust force ( N ) and torques ( N . m )
         void actuate ( float f_t , float tau_phi , float tau_theta , float tau_psi ) ;
-        void arm();
-        void disarm();
+
+        bool arm();
+        bool disarm();
     private :
+        bool armed;
         // Motors PWM outputs
         PwmOut motor_1 , motor_2 , motor_3 , motor_4 ;
         // Angular velocities ( rad / s )
@@ -23,6 +25,7 @@ class Mixer
         void mixer ( float f_t , float tau_phi , float tau_theta , float tau_psi ) ;
         // Convert desired angular velocity ( rad / s ) to PWM signal (%)
         float control_motor ( float omega ) ;
+    
 };
 
 # endif
