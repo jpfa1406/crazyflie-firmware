@@ -51,6 +51,7 @@ bool Mixer::disarm(){
     wait(1);
     ledGR=! ledGR;
     ledGL=! ledGL;
+    
     return armed = false;
 }
 

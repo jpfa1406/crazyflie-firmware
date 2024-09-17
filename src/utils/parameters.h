@@ -21,4 +21,6 @@ const float kl = 1.468e-8;
 
 const float kd = 1.267e-10;
 
+const float dt = 0.002
+
 #endif

@@ -2,7 +2,7 @@
 # define mixer_h
 
 # include "mbed.h "
-# include "crazyflie.h"
+// # include "crazyflie.h"
 // Mixer class
 
 class Mixer
