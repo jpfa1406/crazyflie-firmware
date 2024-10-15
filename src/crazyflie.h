@@ -14,5 +14,6 @@
 
 // Modules
 #include "modules/mixer.h"
+#include "modules/attitude_estimator.h"
 
 #endif
